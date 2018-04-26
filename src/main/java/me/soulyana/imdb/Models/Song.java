@@ -16,9 +16,15 @@ public class Song {
     @NotNull
     private int yearReleased;
 
+    //There are many songs, but each of them is led by ONE artiste.
+    //The Artiste's ID is represented in the song table as leadArtiste
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "artiste_id")
-    private Artiste artiste;
+    @JoinColumn(name = "leadArtiste")
+    private Artiste leadArtiste;
+
+    public Song() {
+
+    }
 
     public long getId() {
         return id;
@@ -44,11 +50,11 @@ public class Song {
         this.yearReleased = yearReleased;
     }
 
-    public Artiste getArtiste() {
-        return artiste;
+    public Artiste getLeadArtiste() {
+        return leadArtiste;
     }
 
-    public void setArtiste(Artiste artiste) {
-        this.artiste = artiste;
+    public void setLeadArtiste(Artiste leadArtiste) {
+        this.leadArtiste = leadArtiste;
     }
 }

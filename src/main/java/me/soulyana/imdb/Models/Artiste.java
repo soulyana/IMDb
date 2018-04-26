@@ -5,6 +5,7 @@ package me.soulyana.imdb.Models;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -24,12 +25,21 @@ public class Artiste {
     @NotNull
     private String image;
 
-    @OneToMany(mappedBy = "artiste",
+    //One artiste HAS many songs. And in each Song, the artiste's ID is represented by 'leadArtiste'.
+    //Look at the database after adding a song to understand this relationship.
+    @OneToMany(mappedBy = "leadArtiste",
             cascade = CascadeType.ALL,
             fetch = FetchType.EAGER)
     public Set<Song> songs;
 
+    public Artiste() {
+        songs = new HashSet<>();
+    }
 
+    public Artiste(String fullName) {
+        this.fullName = fullName;
+        songs = new HashSet<>();
+    }
     public long getId() {
         return id;
     }
@@ -69,4 +79,13 @@ public class Artiste {
     public void setSongs(Set<Song> songs) {
         this.songs = songs;
     }
+
+    @Override
+    public String toString() {
+        return "Artiste{" +
+                "id=" + id +
+                ", fullName='" + fullName + '\'' +
+                '}';
+    }
+
 }

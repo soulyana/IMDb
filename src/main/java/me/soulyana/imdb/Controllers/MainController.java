@@ -68,6 +68,7 @@ public class MainController {
     public String songForm(Model model) {
         model.addAttribute("menuoption", "addsong");
         model.addAttribute("song", new Song());
+        model.addAttribute("artistes", artisteRepository.findAll());
         return "songform";
     }
 
