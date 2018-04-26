@@ -1,10 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+<html lang="en" xmlns:th="www.thymeleaf.org">
+<head th:replace="/fragments/navbase::navhead">
+
 </head>
 <body>
+<nav th:replace="/fragments/navbase::thenav(${menuoption})"></nav>
 <p>Songform</p>
+<span th:replace="/fragments/navbase::scripts"></span>
 </body>
 </html>

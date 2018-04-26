@@ -1,10 +1,22 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+<html lang="en" xmlns:th="www.thymeleaf.org">
+<head th:replace="/fragments/navbase::navhead">
+
 </head>
 <body>
-<p>List Artistes</p>
+<nav th:replace="/fragments/navbase::thenav(${menuoption})"></nav>
+<div th:each="eachArtiste : ${artistes}">
+    <h2 th:text="${eachArtiste.fullName}"></h2>
+    <h2 th:text="${eachArtiste.stageName}"></h2>
+    //display image of artiste
+    <img class="rounded-circle" th:src="${eachArtiste.image}== ''? '/images/defaultArtiste.jpg' : ${eachArtiste.image}"
+         alt="Artiste"/>
+
+    <form action="/updateartiste" method="post">
+        <input type="hidden" name="id" th:value="${eachArtiste.id}">
+        <p><button th:text="'Edit Artiste'" type="submit"></button></p>
+    </form>
+</div>
+<span th:replace="/fragments/navbase::scripts"></span>
 </body>
 </html>
