@@ -5,7 +5,14 @@
 </head>
 <body>
 <nav th:replace="/fragments/navbase::thenav(${menuoption})"></nav>
-<p>Homepage</p>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col"><h1 class="display-1" style="text-align:center;">IMDB of music</h1></div>
+    </div>
+    <div class="row">
+        <div class="col"><h1 class="display-3" style="text-align:center;">Your online collection of artistes and their songs</h1></div>
+    </div>
+</div>
 <span th:replace="/fragments/navbase::scripts"></span>
 </body>
 </html>
