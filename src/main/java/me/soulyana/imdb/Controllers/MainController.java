@@ -99,14 +99,14 @@ public class MainController {
             return "songform";
         }
         songRepository.save(song);
-        return "redirect:/listsongs";
+        return "redirect:/";
     }
 
     //list all songs
     @RequestMapping("/listsongs")
     public String showListSongs(Model model) {
         model.addAttribute("menuoption", "listsongs");
-        model.addAttribute("songs", songRepository.findAll());
+        model.addAttribute("artistes", artisteRepository.findAll());
         return "listsongs";
     }
 

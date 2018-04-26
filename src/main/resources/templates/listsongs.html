@@ -5,7 +5,18 @@
 </head>
 <body>
 <nav th:replace="/fragments/navbase::thenav(${menuoption})"></nav>
-<p>List songs</p>
+<div th:each="eachArtiste : ${artistes}">
+    <h3 th:text="${eachArtiste.stageName}"></h3>
+    <div th:each="eachSong:${eachArtiste.songs}">
+        <p th:text="${eachSong.title}"></p>
+        <p th:text="${eachSong.yearReleased}"></p>
+    </div>
+
+    <!--<form action="/updatesong" method="post">-->
+        <!--<input type="hidden" name="id" th:value="${eachSong.id}">-->
+        <!--<p><button th:text="'Edit Song'" type="submit"></button></p>-->
+    <!--</form>-->
+</div>
 <span th:replace="/fragments/navbase::scripts"></span>
 </body>
 </html>

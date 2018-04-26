@@ -23,6 +23,7 @@ public class StartUpData {
         anArtiste.setFullName("Robert Rihmeek Williams");
         anArtiste.setStageName("Meek Mill");
         anArtiste.setImage("/images/meekmill.jpg");
+
         artisteRepository.save(anArtiste);
 
         anArtiste = new Artiste();
