@@ -6,7 +6,7 @@
 <body>
 <nav th:replace="/fragments/navbase::thenav(${menuoption})"></nav>
 <p>Songform</p>
-<form action="/addsong" th:object="${song}" method="post">
+<form action="/savesong" th:object="${aSong}" method="post">
     <input type="hidden" th:field="*{id}" />
     <div class="form-group">
         <label class="control-label col-sm-4">Title:</label>
@@ -24,7 +24,7 @@
     </div>
     <select th:field="*{leadArtiste}">
         <option th:each="eachArtiste:${artistes}" th:value="${eachArtiste.id}"
-                th:text="{eachArtiste.stageName}==null?${eachArtiste.fullName}:${eachArtiste.stageName}"></option>
+            th:text="${eachArtiste.stageName}"></option>
     </select>
     <div class="form-group">
         <div class="col-sm-offset-2 col-sm-10">

@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -34,20 +35,20 @@ public class MainController {
     @RequestMapping("/addartiste")
     public String artisteForm(Model model) {
         model.addAttribute("menuoption", "addartiste");
-        model.addAttribute("artiste", new Artiste());
+        model.addAttribute("anArtiste", new Artiste());
         return "artisteform";
     }
 
     //update an artiste
     @RequestMapping("/updateartiste")
-    public String artisteForm(HttpServletRequest request, Model model) {
+    public String editArtiste(HttpServletRequest request, Model model) {
         long artisteID = new Long(request.getParameter("id"));
         model.addAttribute("anArtiste", artisteRepository.findById(artisteID).get());
         return "artisteform";
     }
 
     @PostMapping("/addartiste")
-    public String processArtisteForm(@Valid Artiste artiste, BindingResult result) {
+    public String processArtisteForm(@Valid @ModelAttribute("anArtiste") Artiste artiste, BindingResult result) {
         if (result.hasErrors()) {
             return "artisteform";
         }
@@ -65,23 +66,35 @@ public class MainController {
 
     //add a song
     @RequestMapping("/addsong")
-    public String songForm(Model model) {
+    public String songForm(Model model, HttpServletRequest request) {
+        //navbar
         model.addAttribute("menuoption", "addsong");
-        model.addAttribute("song", new Song());
+
+        //Get an artiste id (if there is one)
+        String artisteID = request.getParameter("artisteid");
+
+        Song theSong = new Song();
+
+        //Associate a song with an artiste if the artiste's ID is passed as a parameter
+        /*if(artisteID == null) {
+            theSong.setLeadArtiste(artisteRepository.findById(new Long(artisteID)).get());
+        }*/
+
+        model.addAttribute("aSong", theSong);
         model.addAttribute("artistes", artisteRepository.findAll());
         return "songform";
     }
 
     //update a song
     @RequestMapping("/updatesong")
-    public String songForm(HttpServletRequest request, Model model) {
+    public String editSong(HttpServletRequest request, Model model) {
         long songID = new Long(request.getParameter("id"));
         model.addAttribute("aSong", songRepository.findById(songID).get());
         return "songform";
     }
 
-    @PostMapping("/addsong")
-    public String processSongForm(@Valid Song song, BindingResult result) {
+    @RequestMapping("/savesong")
+    public String processSongForm(@Valid @ModelAttribute("aSong") Song song, BindingResult result) {
         if (result.hasErrors()) {
             return "songform";
         }

@@ -27,9 +27,7 @@ public class Artiste {
 
     //One artiste HAS many songs. And in each Song, the artiste's ID is represented by 'leadArtiste'.
     //Look at the database after adding a song to understand this relationship.
-    @OneToMany(mappedBy = "leadArtiste",
-            cascade = CascadeType.ALL,
-            fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "leadArtiste")
     public Set<Song> songs;
 
     public Artiste() {
@@ -57,6 +55,9 @@ public class Artiste {
     }
 
     public String getStageName() {
+        if(stageName==null) {
+            return fullName;
+        }
         return stageName;
     }
 

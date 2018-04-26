@@ -8,9 +8,9 @@
 <div th:each="eachArtiste : ${artistes}">
     <h2 th:text="${eachArtiste.fullName}"></h2>
     <h3 th:text="${eachArtiste.stageName}"></h3>
-    //display image of artiste
+    <!--display image of artiste-->
     <img class="rounded-circle" th:src="${eachArtiste.image}== ''? '/images/defaultArtiste.jpg' : ${eachArtiste.image}"
-         alt="Artiste"/>
+         alt="Artiste" height="100px" width="100px"/>
     <div th:each="eachSong:${eachArtiste.songs}">
         <p th:text="${eachSong.title}"></p>
         <p th:text="${eachSong.yearReleased}"></p>

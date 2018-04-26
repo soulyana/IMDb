@@ -18,8 +18,7 @@ public class Song {
 
     //There are many songs, but each of them is led by ONE artiste.
     //The Artiste's ID is represented in the song table as leadArtiste
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "leadArtiste")
+    @ManyToOne
     private Artiste leadArtiste;
 
     public Song() {

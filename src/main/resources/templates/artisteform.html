@@ -6,7 +6,7 @@
 <body>
 <nav th:replace="/fragments/navbase::thenav(${menuoption})"></nav>
 <p>Artiste Form</p>
-<form action="/addartiste" method="post" th:object="${artiste}">
+<form action="/addartiste" method="post" th:object="${anArtiste}">
     <input type="hidden" th:field="*{id}" />
     <div class="form-group">
         <label class="control-label col-sm-4">Full Name:</label>
